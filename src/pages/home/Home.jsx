@@ -1,1 +1,14 @@
-<h1>Pagina de Inicio</h1>
+import React from 'react';
+import Navbar from '../../components/navbar/Navbar';
+
+const Home = () => {
+  return (
+    <div>
+      <Navbar />
+      <h1>Bienvenido a la página de inicio</h1>
+      <p>Explora los eventos y más desde aquí.</p>
+    </div>
+  );
+};
+
+export default Home;

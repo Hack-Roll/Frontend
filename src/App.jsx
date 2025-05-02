@@ -1,14 +1,12 @@
 
 import './App.css'
+import Home from "../src/pages/home/Home.jsx";
+
 
 function App() {
   
-
-  return (
-    <>
-      <h1>Hack&Roll</h1>
-    </>
-  )
+  return <Home />;
+  
 }
 
 export default App

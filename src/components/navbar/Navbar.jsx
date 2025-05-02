@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import logo from '../../assets/logo.png';
+import WhiteLogo from "../../../assets/WhiteLogo.png";
 
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarLogo}>
-        <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ''} exact>
-          <img src={logo} alt="Logo" className={styles.logoImage} />
+      <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ''}>
+        <img src={WhiteLogo} alt="Logo" className={styles.logo} />
         </NavLink>
       </div>
       <ul className={styles.navbarLinks}>
