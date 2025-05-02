@@ -1,0 +1,47 @@
+/* Estilos básicos para la barra de navegación con CSS Modules */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.navbarLogo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbarLinks {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbarLinks li {
+  display: inline;
+}
+
+.navbarLinks a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.active {
+  color: #00bcd4;
+}
+
+.navbarLinks a:hover {
+  color: #00bcd4;
+}
