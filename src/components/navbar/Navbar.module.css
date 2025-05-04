@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #040657;
   padding: 1rem 2rem;
   color: white;
 }
@@ -38,9 +38,9 @@
 }
 
 .active {
-  color: #00bcd4;
+  color: #F9911A;
 }
 
 .navbarLinks a:hover {
-  color: #00bcd4;
+  color: #F9911A;
 }
