@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AddEvents.css';
 import Navbar from '../../components/navbar/Navbar';
+import UploadPhotos from '../../components/uploadPhotos/UploadPhotos';
 
 // para crear nuevos eventos
 const AddEvents = () => {
@@ -26,17 +27,20 @@ const AddEvents = () => {
   }; // funcion ejecuta al hacer clic en el botón Save Changes. 
   // Evita que la página se recargue y muestra los datos por consola.
 
-  return ( 
-    // Contenedor principal
-    <div className="container"> 
-           <Navbar />
-      {/* Contenedor del formulario*/}
+
+  return (
+    <div className="container">
+      <Navbar />
+
+      {/* Contenedor del formulario */}
       <div className="form-container">
         <h2>Enter your event details:</h2>
-        {/* Formulario con evento onSubmit */}
-        <form className="form" onSubmit={handleSubmit}>
-        {/* indica que cuando el usuario haga clic en Save Changes, se ejecutará la función handleSubmit */}
 
+        {/* Componente para subir fotos */}
+        <UploadPhotos />
+
+        {/* Formulario */}
+        <form className="form" onSubmit={handleSubmit}>
           <label htmlFor="eventName">Event Name</label>
           <input
             type="text"
@@ -45,9 +49,8 @@ const AddEvents = () => {
             value={formData.eventName}
             onChange={handleChange}
             required
-          />{/* Campo para el nombre del evento */}
+          />
 
-          
           <label htmlFor="date">Date</label>
           <input
             type="date"
@@ -56,9 +59,8 @@ const AddEvents = () => {
             value={formData.date}
             onChange={handleChange}
             required
-          />{/* Campo para la fecha */}
+          />
 
-          {/* Selector para el tipo de ubicación */}
           <label htmlFor="location">Address or Online Mode</label>
           <select
             id="location"
@@ -72,7 +74,6 @@ const AddEvents = () => {
             <option value="online">Online</option>
           </select>
 
-          
           <label htmlFor="description">About the Event</label>
           <textarea
             id="description"
@@ -80,17 +81,13 @@ const AddEvents = () => {
             value={formData.description}
             onChange={handleChange}
             rows="4"
-          ></textarea> 
-          {/* Área de texto para la descripción */}
+          ></textarea>
 
-          
           <button type="submit">Save Changes</button>
-          {/* Botón para enviar el formulario */}
         </form>
       </div>
     </div>
   );
 };
 
-// Exportación del componente
 export default AddEvents;
