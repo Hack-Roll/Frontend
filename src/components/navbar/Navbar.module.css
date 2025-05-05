@@ -13,9 +13,9 @@
   align-items: center;
 }
 
-.logoImage {
-  height: 40px;
-  margin-right: 10px;
+.logo {
+  width: 200px;
+  margin-right: 1rem;
 }
 
 .navbarLinks {

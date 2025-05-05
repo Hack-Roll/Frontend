@@ -12,10 +12,10 @@ const Navbar = () => {
         </NavLink>
       </div>
       <ul className={styles.navbarLinks}>
-        <li><NavLink to="/eventList" className={({ isActive }) => isActive ? styles.active : ''}>Eventos</NavLink></li>
-        <li><NavLink to="/addEvents" className={({ isActive }) => isActive ? styles.active : ''}>Añadir Evento</NavLink></li>
-        <li><NavLink to="/userProfile" className={({ isActive }) => isActive ? styles.active : ''}>Perfil</NavLink></li>
-        <li><NavLink to="/loginRegister" className={({ isActive }) => isActive ? styles.active : ''}>Iniciar Sesión</NavLink></li>
+        <li><NavLink to="/eventList" className={({ isActive }) => isActive ? styles.active : ''}>Events</NavLink></li>
+        <li><NavLink to="/addEvents" className={({ isActive }) => isActive ? styles.active : ''}>Add Events</NavLink></li>
+        <li><NavLink to="/userProfile" className={({ isActive }) => isActive ? styles.active : ''}>Profile</NavLink></li>
+        <li><NavLink to="/loginRegister" className={({ isActive }) => isActive ? styles.active : ''}>Login</NavLink></li>
       </ul>
     </nav>
   );
