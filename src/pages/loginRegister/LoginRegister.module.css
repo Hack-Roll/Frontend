@@ -1,0 +1,75 @@
+
+.loginContainer {
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d3d3d3; /* Gris claro */
+    font-size: 14px;
+  }
+  
+  .input:focus {
+    outline: none;
+    border: 2px solid #ffa500; /* Naranja */
+  }
+  
+  .btnLogin,
+  .btnRegister {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa500; /* Naranja */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .btnLogin:hover,
+  .btnRegister:hover {
+    background-color: #cc8400; /* Naranja oscuro */
+  }
+  
+  .toggleText {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .toggleButton {
+    background: none;
+    border: none;
+    color: #ffa500;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+  
+  .toggleButton:hover {
+    color: #cc8400;
+  }
