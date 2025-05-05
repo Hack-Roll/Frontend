@@ -1,6 +1,7 @@
 .button {
-    background-color: orange;
-    padding: 10px;
-    border-radius: 8px;
-    color: white;
-  }
+  background-color: orange;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+}
