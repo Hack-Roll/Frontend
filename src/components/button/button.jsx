@@ -1,8 +1,8 @@
-import styles from "../button/Button.module.css";
+import "./Button.css";
 
 
-function Button({ texto }) {
-  return <button className={styles.boton}>{texto}</button>;
+function Button({ text,type }) {
+  return <button type={type} className="button">{text}</button>;
 }
 
 export default Button;
