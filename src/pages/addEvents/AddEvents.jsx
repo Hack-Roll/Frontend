@@ -1,52 +1,68 @@
-import React, { useState } from 'react';
-import './AddEvents.css';
-import Navbar from '../../components/navbar/Navbar';
-import UploadPhotos from '../../components/uploadPhotos/UploadPhotos';
-import CardEvent from '../../components/cardEvent/CardEvent';
-import Button from '../../components/button/Button';
+import React, { useState, useEffect } from "react";
+import "./AddEvents.css";
+import Navbar from "../../components/navbar/Navbar";
+import UploadPhotos from "../../components/uploadPhotos/UploadPhotos";
+import CardEvent from "../../components/cardEvent/CardEvent";
+import Button from "../../components/button/Button";
+import { EventService } from "../../Service/EventService";
 
 const AddEvents = () => {
   const [formData, setFormData] = useState({
-    eventName: '',
-    date: '',
-    location: '',
-    description: '',
-    company: ''
+    title: "",
+    description: "",
+    date: "",
+    category: "",
+    location: "",
+    maxAttendees: "",
   });
 
   const [events, setEvents] = useState([]);
 
+  // Crear una instancia de la clase EventService
+  const eventService = new EventService();
+
+  // useEffect para obtener los eventos al cargar el componente
+  useEffect(() => {
+    eventService.getAllEvents().then((res) => {
+      setEvents((prev) => res.content);
+    });
+  }, []); // <-- empty array means "run once"
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEvents((prev) => [...prev, formData]);
-    setFormData({
-      eventName: '',
-      date: '',
-      location: '',
-      description: '',
-      company: ''
+
+    // Send the form data to the server
+    eventService.createEvent(formData).then((res) => {
+      // Update the events state with the new event
+      setEvents((prev) => [...prev, res]);
+
+      // Clear the form
+      setFormData({
+        title: "",
+        description: "",
+        date: "",
+        category: "",
+        location: "",
+        maxAttendees: "",
+      });
     });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    let newValue = value;
+    if (name === "maxAttendees") {
+      newValue = Number(value);
+    }
+    if (name === "date") {
+      // Ensure the value is in "YYYY-MM-DDTHH:mm:00" format
+      newValue = value.length === 16 ? value + ":00" : value;
+    }
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: newValue,
     }));
-  }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setEvents((prev) => [...prev, formData]);
-  //   setFormData({
-  //     eventName: '',
-  //     date: '',
-  //     location: '',
-  //     description: '',
-  //     company: ''
-  //   });
-  // };
+  };
 
   return (
     <div className="container">
@@ -65,26 +81,16 @@ const AddEvents = () => {
           <label htmlFor="eventName">Nombre del evento</label>
           <input
             type="text"
-            id="eventName"
-            name="eventName"
-            value={formData.eventName}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="company">Empresa</label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formData.company}
+            id="title"
+            name="title"
+            value={formData.title}
             onChange={handleChange}
             required
           />
 
           <label htmlFor="date">Fecha</label>
           <input
-            type="date"
+            type="datetime-local"
             id="date"
             name="date"
             value={formData.date}
@@ -92,18 +98,39 @@ const AddEvents = () => {
             required
           />
 
+          <label htmlFor="maxAttendees">Máximo de asistentes</label>
+          <input
+            type="number"
+            id="maxAttendees"
+            name="maxAttendees"
+            value={formData.maxAttendees}
+            onChange={handleChange}
+            required
+          />
+
           <label htmlFor="location">Dirección o modalidad online</label>
           <select
+            id="category"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Selecciona una opción</option>
+            <option value="Presencial">Presential</option>
+            <option value="Online">Online</option>
+          </select>
+
+          {/* TODO: Only show if category is "Presential" */}
+          <label htmlFor="location">Ubicación</label>
+          <input
+            type="text"
             id="location"
             name="location"
             value={formData.location}
             onChange={handleChange}
             required
-          >
-            <option value="">Selecciona una opción</option>
-            <option value="Presencial">Presencial</option>
-            <option value="Online">Online</option>
-          </select>
+          />
 
           <label htmlFor="description">Sobre el evento</label>
           <textarea
@@ -115,7 +142,7 @@ const AddEvents = () => {
           ></textarea>
 
           {/* <button type="submit" className="submit-btn">Save Cahnges </button> */}
-          <Button text="Save Changes" type="submit"/>
+          <Button text="Save Changes" type="submit" />
         </form>
       </div>
 
@@ -123,9 +150,12 @@ const AddEvents = () => {
       {events.map((event, index) => (
         <CardEvent
           key={index}
-          eventName={event.eventName}
-          company={event.company}
+          title={event.title}
+          description={event.description}
           date={event.date}
+          category={event.category}
+          location={event.location}
+          maxAttendees={event.maxAttendees}
         />
       ))}
     </div>
