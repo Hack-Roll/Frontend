@@ -1,62 +1,61 @@
 .upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: sans-serif;
-    color: white;
-  }
-  
-  .title {
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .upload-box {
-    background-color: #d3d3d3;
-    border-radius: 10px;
-    border: 2px dashed #ffa500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
 
-  
-  .upload-box input[type='file'] {
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  .plus {
-    font-size: 40px;
-    color: orange;
-  }
-  
-  .main-box {
-    width: 300px;
-    height: 180px;
-    margin-bottom: 20px;
-  }
-  
-  .thumbnail-container {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .small-box {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .small-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
+.upload-box {
+  background-color: #d3d3d3;
+  border-radius: 12px;
+  border: 2px dashed #ffa500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-box input[type='file'] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  top: 0;
+  left: 0;
+}
+
+.upload-box:focus-within {
+  outline: none;
+}
+
+.plus {
+  font-size: 40px;
+  color: orange;
+}
+
+.main-box {
+  width: 300px;
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.thumbnail-container {
+  display: flex;
+  gap: 15px;
+}
+
+.small-box {
+  width: 80px;
+  height: 80px;
+}
+
+.upload-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

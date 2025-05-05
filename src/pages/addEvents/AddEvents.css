@@ -62,3 +62,22 @@
   .form button:hover {
     opacity: 0.9;
   }
+
+  .main-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: white;
+  }
+  
+  .upload-section {
+    max-width: var(--max-width-form);
+    margin: 0 auto 30px auto;
+  }
+  
+  .section-title {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  

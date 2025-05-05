@@ -4,26 +4,29 @@ import './UploadPhotos.css';
 const UploadPhotos = () => {
   const [images, setImages] = useState([]);
 
-  const handleImageUpload = (e) => {
+  const handleUpload = (e) => {
     const files = Array.from(e.target.files);
-    const newImages = files.map(file => URL.createObjectURL(file));
-    setImages(prev => [...prev, ...newImages]);
+    const newImages = files.map((file) => URL.createObjectURL(file));
+    setImages((prev) => [...prev, ...newImages].slice(0, 4));
   };
 
   return (
     <div className="upload-container">
-      <p className="title">Sube tus fotos aquí</p>
-
-      <label className="upload-box main-box">
-        <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
-        <span className="plus">+</span>
-      </label>
+      <div className="upload-box main-box">
+        <input type="file" accept="image/*" multiple onChange={handleUpload} />
+        {images[0] ? (
+          <img src={images[0]} alt="main" />
+        ) : (
+          <span className="plus">+</span>
+        )}
+      </div>
 
       <div className="thumbnail-container">
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="upload-box small-box">
+        {[1, 2, 3].map((i) => (
+          <div className="upload-box small-box" key={i}>
+            <input type="file" accept="image/*" onChange={handleUpload} />
             {images[i] ? (
-              <img src={images[i]} alt={`Foto ${i + 1}`} />
+              <img src={images[i]} alt={`thumbnail-${i}`} />
             ) : (
               <span className="plus">+</span>
             )}
