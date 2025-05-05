@@ -1,0 +1,30 @@
+.button {
+  background-color: #F9911A; /* Naranja */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Tamaños diferentes */
+.small {
+  width: 100px;
+}
+
+.medium {
+  width: 150px;
+}
+
+.large {
+  width: 200px;
+}
+
+/* usar el botón en tus páginas
+<Button size="small">Save</Button>
+<Button size="medium">Update</Button>
+<Button size="large" type="submit">Submit</Button> */
+

@@ -1,0 +1,31 @@
+/* # Estilos globales (NO modularizados) */
+
+.button {
+    background-color: #F9911A; /* Orange */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Sizes */
+  .small {
+    width: 100px;
+  }
+  
+  .medium {
+    width: 150px;
+  }
+  
+  .large {
+    width: 200px;
+  }
