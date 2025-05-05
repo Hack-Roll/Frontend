@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./LoginRegister.module.css";
+import Navbar from "../../components/Navbar/Navbar";
 
 const LoginRegister = () => {
   const [isLogin, setIsLogin] = useState(true); 
@@ -9,6 +10,11 @@ const LoginRegister = () => {
   };
 
   return (
+
+            <>
+            <Navbar/>
+            
+            
     <div className={styles.loginContainer}>
       <h2 className={styles.title}>{isLogin ? "Log In" : "Registro"}</h2>
       <form>
@@ -99,6 +105,7 @@ const LoginRegister = () => {
         </button>
       </p>
     </div>
+            </>
   );
 };
 
