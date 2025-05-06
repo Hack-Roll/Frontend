@@ -5,7 +5,7 @@ export class EventService {
 
   // TODO: Get real token based on user login
   token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXRAa2FhYWF0LmNvbSIsImlhdCI6MTc0NjQ1MTQ3OCwiZXhwIjoxNzQ2NTM3ODc4fQ.KxHJTDQqMrHciTb0zwHjRvYAJX2tt7PF52M8jtjI3AuKwjHcfEa44oFlMD2Fj7i5LC9Iup1jAZs81F0LNOxfHg";
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwYW9AcGFvb28uY29tIiwiaWF0IjoxNzQ2NTI0MDYwLCJleHAiOjE3NDY2MTA0NjB9.pM-4iZqrhivSVWJ5gkqUhAnUvhKZa7NtVVxl-Y8sDDvD0TDcAp8JTmX-iVdrgy2ukWjpjsqJjCKuPTfrV9_0rA";
 
   getAllEvents() {
     // GET http://localhost:8080/api/event
