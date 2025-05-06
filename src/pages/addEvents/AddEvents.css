@@ -1,83 +1,68 @@
-
 .upload-container {
   margin-bottom: 20px;
 }
 
 .container {
-    min-height: 100vh;
-    padding: var(--padding-large);
-  }
-  
-  .form-container {
-    max-width: var(--max-width-form);
-    margin: var(--padding-medium) auto;
-    border: 2px solid #FF8C00; /* Borde naranja */
-    border-radius: 12px; /* Radio de borde de 12px */
-    padding: var(--padding-medium); /* Padding para que el contenido no toque el borde */
-  }
-  
-  .form-container h2 {
-    font-size: var(--font-size-large);
-    margin-bottom: var(--padding-medium);
-    text-align: center;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--padding-small);
-  }
-  
-  .form input,
-  .form textarea,
-  .form select {
-    padding: var(--padding-small);
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.05);
-    font-size: var(--font-size-small);
-  }
-  
-  .form label {
-    font-size: var(--font-size-small);
-    margin-bottom: calc(var(--padding-small) / 2);
-  }
-  
-  .form textarea {
-    min-height: var(--min-height-textarea);
-    resize: vertical;
-  }
-  
-  .form button {
-    padding: var(--padding-small) var(--padding-medium);
-    background-color: var(--background-secondary);
-    color: var(--base-color);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: var(--font-size-small);
-    margin-top: var(--padding-small);
-  }
-  
-  .form button:hover {
-    opacity: 0.9;
-  }
+  min-height: 100vh;
+  padding: var(--padding-large);
+}
 
-  .main-title {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-top: 20px;
-    color: white;
-  }
-  
-  .upload-section {
-    max-width: var(--max-width-form);
-    margin: 0 auto 30px auto;
-  }
-  
-  .section-title {
-    color: white;
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  
+.form-container {
+  max-width: var(--max-width-form);
+  margin: var(--padding-medium) auto;
+  border: 2px solid #ff8c00; /* Borde naranja */
+  border-radius: 12px; /* Radio de borde de 12px */
+  padding: var(
+    --padding-medium
+  ); /* Padding para que el contenido no toque el borde */
+}
+
+.form-container h2 {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--padding-medium);
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-small);
+}
+
+.form input,
+.form textarea,
+.form select {
+  padding: var(--padding-small);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  font-size: var(--font-size-small);
+}
+
+.form label {
+  font-size: var(--font-size-small);
+  margin-bottom: calc(var(--padding-small) / 2);
+}
+
+.form textarea {
+  min-height: var(--min-height-textarea);
+  resize: vertical;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: white;
+}
+
+.upload-section {
+  max-width: var(--max-width-form);
+  margin: 0 auto 30px auto;
+}
+
+.section-title {
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}

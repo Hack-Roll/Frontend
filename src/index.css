@@ -12,12 +12,12 @@
   box-sizing: border-box;
 
 } */
- 
+
 :root {
   color-scheme: light dark;
   --base-color: rgba(255, 255, 255, 0.87); /* Color de texto base */
   --background-primary: #040657; /* Fondo principal */
-  --font-family: 'Tomorrow', sans-serif; /* Fuente global */
+  --font-family: "Tomorrow", sans-serif; /* Fuente global */
   --font-size-small: 0.875rem; /* Tamaño de fuente pequeño */
   --font-size-medium: 1rem; /* Tamaño de fuente medio */
   --font-size-large: 1.25rem; /* Tamaño de fuente grande */
@@ -25,7 +25,7 @@
   --padding-small: 8px; /* Espaciado pequeño */
   --padding-medium: 16px; /* Espaciado medio */
   --padding-large: 32px; /* Espaciado grande */
-  
+
   --max-width-form: 600px; /* Ancho máximo para el formulario */
   --min-height-textarea: 100px; /* Altura mínima para el textarea */
   --border-radius: 8px; /* Radio de borde general */
@@ -33,13 +33,17 @@
 
 /* Estilos generales para la página */
 /* Importante!!!!!! */
-body { 
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-family); /* Usar la fuente definida globalmente */
-  color: var(--base-color); /* Asegurarse que el texto tiene el color correcto */
-  background-color: var(--background-primary); /* Establecer el fondo de toda la página */
+  color: var(
+    --base-color
+  ); /* Asegurarse que el texto tiene el color correcto */
+  background-color: var(
+    --background-primary
+  ); /* Establecer el fondo de toda la página */
 }
 
 /* Contenedor principal */
@@ -92,21 +96,4 @@ body {
 .form textarea {
   min-height: var(--min-height-textarea);
   resize: vertical;
-}
-
-/* Estilos para el botón */
-.form button {
-  padding: var(--padding-small) var(--padding-medium);
-  background-color: var(--base-color); /* Fondo blanco suave */
-  color: var(--background-primary); /* Color del texto oscuro */
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  font-size: var(--font-size-small);
-  margin-top: var(--padding-small);
-}
-
-/* Efecto hover para el botón */
-.form button:hover {
-  opacity: 0.9;
 }
