@@ -5,6 +5,7 @@ import UploadPhotos from "../../components/uploadPhotos/UploadPhotos";
 import CardEvent from "../../components/cardEvent/CardEvent";
 import Button from "../../components/button/Button";
 import { EventService } from "../../Service/EventService";
+import EventModal from "../../components/EventModal/EventModal";
 
 const AddEvents = () => {
   const [formData, setFormData] = useState({
@@ -17,37 +18,19 @@ const AddEvents = () => {
   });
 
   const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null); // For modal
 
-  // Crear una instancia de la clase EventService
+  // Instance of EventService
   const eventService = new EventService();
 
-  // useEffect para obtener los eventos al cargar el componente
+  // Fetch events on mount
   useEffect(() => {
     eventService.getAllEvents().then((res) => {
-      setEvents((prev) => res.content);
+      setEvents(res.content);
     });
-  }, []); // <-- empty array means "run once"
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Send the form data to the server
-    eventService.createEvent(formData).then((res) => {
-      // Update the events state with the new event
-      setEvents((prev) => [...prev, res]);
-
-      // Clear the form
-      setFormData({
-        title: "",
-        description: "",
-        date: "",
-        category: "",
-        location: "",
-        maxAttendees: "",
-      });
-    });
-  };
-
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     let newValue = value;
@@ -64,21 +47,49 @@ const AddEvents = () => {
     }));
   };
 
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    eventService.createEvent(formData).then((res) => {
+      setEvents((prev) => [...prev, res]);
+      setFormData({
+        title: "",
+        description: "",
+        date: "",
+        category: "",
+        location: "",
+        maxAttendees: "",
+      });
+    });
+  };
+
+  // Modal handlers
+  const handleViewEvent = async (event) => {
+    console.log("Event clicked for modal:", event); // <-- Agrega este log
+    // Opcional: obtener datos frescos
+    // const freshEvent = await eventService.getEventById(event.id);
+    setSelectedEvent(event); // o setSelectedEvent(freshEvent);
+  };
+
+  const closeModal = () => {
+    setSelectedEvent(null);
+  };
+
   return (
     <div className="container">
       <Navbar />
 
-      <h2 className="main-title">Crear un evento</h2>
+      <h2 className="main-title">Create an event</h2>
 
       <div className="upload-section">
-        <h3 className="section-title">Sube tus fotos aquí:</h3>
+        <h3 className="section-title">Upload your photos here:</h3>
         <UploadPhotos />
       </div>
 
       <div className="form-container">
-        <h3 className="section-title">Ingresa los detalles de tu evento:</h3>
+        <h3 className="section-title">Enter your event details:</h3>
         <form className="form" onSubmit={handleSubmit}>
-          <label htmlFor="eventName">Nombre del evento</label>
+          <label htmlFor="title">Event name</label>
           <input
             type="text"
             id="title"
@@ -88,7 +99,7 @@ const AddEvents = () => {
             required
           />
 
-          <label htmlFor="date">Fecha</label>
+          <label htmlFor="date">Date</label>
           <input
             type="datetime-local"
             id="date"
@@ -98,7 +109,7 @@ const AddEvents = () => {
             required
           />
 
-          <label htmlFor="maxAttendees">Máximo de asistentes</label>
+          <label htmlFor="maxAttendees">Max attendees</label>
           <input
             type="number"
             id="maxAttendees"
@@ -108,7 +119,7 @@ const AddEvents = () => {
             required
           />
 
-          <label htmlFor="location">Dirección o modalidad online</label>
+          <label htmlFor="category">Type</label>
           <select
             id="category"
             name="category"
@@ -116,13 +127,12 @@ const AddEvents = () => {
             onChange={handleChange}
             required
           >
-            <option value="">Selecciona una opción</option>
+            <option value="">Select an option</option>
             <option value="Presencial">Presential</option>
             <option value="Online">Online</option>
           </select>
 
-          {/* TODO: Only show if category is "Presential" */}
-          <label htmlFor="location">Ubicación</label>
+          <label htmlFor="location">Location</label>
           <input
             type="text"
             id="location"
@@ -132,7 +142,7 @@ const AddEvents = () => {
             required
           />
 
-          <label htmlFor="description">Sobre el evento</label>
+          <label htmlFor="description">About the event</label>
           <textarea
             id="description"
             name="description"
@@ -141,12 +151,10 @@ const AddEvents = () => {
             rows="4"
           ></textarea>
 
-          {/* <button type="submit" className="submit-btn">Save Cahnges </button> */}
           <Button text="Save Changes" type="submit" />
         </form>
       </div>
 
-      <h3 className="section-title">Mis eventos creados</h3>
       {events.map((event, index) => (
         <CardEvent
           key={index}
@@ -156,8 +164,11 @@ const AddEvents = () => {
           category={event.category}
           location={event.location}
           maxAttendees={event.maxAttendees}
+          onView={() => handleViewEvent(event)}
         />
       ))}
+
+      <EventModal event={selectedEvent} onClose={closeModal} />
     </div>
   );
 };

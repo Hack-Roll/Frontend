@@ -9,6 +9,8 @@ const CardEvent = ({
   category,
   location,
   maxAttendees,
+  onView, // function to view or edit event
+  onDetails, // function to view event details
 }) => {
   return (
     <div className="card-event">
@@ -17,14 +19,20 @@ const CardEvent = ({
         <p>{description}</p>
         <div>{date}</div>
         <div>{category}</div>
-        {/* TODO: Only show if category is "Presential" */}
-        <div>{location}</div>
+        {category === "Presencial" && <div>{location}</div>}
         <div>Max attendees: {maxAttendees}</div>
       </div>
 
       <div className="card-buttons">
-        <Button text="Ver o editar evento" />
-        <Button text="Ver lista de asistentes" />
+        <Button text="View details" onClick={onDetails} />
+        <Button
+          text="Edit"
+          onClick={() => {
+            console.log("Button clicked!", title);
+            onView();
+          }}
+        />
+        <Button text="Attendee list" />
       </div>
     </div>
   );
