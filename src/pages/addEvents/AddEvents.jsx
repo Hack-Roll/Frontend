@@ -6,6 +6,7 @@ import CardEvent from "../../components/cardEvent/CardEvent";
 import Button from "../../components/button/Button";
 import { EventService } from "../../Service/EventService";
 import EventModal from "../../components/EventModal/EventModal";
+import SectionName from "../../components/sectionName/SectionName";
 
 const AddEvents = () => {
   const [formData, setFormData] = useState({
@@ -77,12 +78,11 @@ const AddEvents = () => {
 
   return (
     <div className="container">
-      <Navbar />
-
-      <h2 className="main-title">Create an event</h2>
+ <Navbar />
+ <SectionName>Create an event</SectionName>
 
       <div className="upload-section">
-        <h3 className="section-title">Upload your photos here:</h3>
+        <h1 className="section-title">Upload your photos here:</h1>
         <UploadPhotos />
       </div>
 
