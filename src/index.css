@@ -1,4 +1,4 @@
-:root {
+/* :root {
  
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -11,5 +11,102 @@
   padding: 0;
   box-sizing: border-box;
 
+} */
+ 
+:root {
+  color-scheme: light dark;
+  --base-color: rgba(255, 255, 255, 0.87); /* Color de texto base */
+  --background-primary: #040657; /* Fondo principal */
+  --font-family: 'Tomorrow', sans-serif; /* Fuente global */
+  --font-size-small: 0.875rem; /* Tamaño de fuente pequeño */
+  --font-size-medium: 1rem; /* Tamaño de fuente medio */
+  --font-size-large: 1.25rem; /* Tamaño de fuente grande */
+
+  --padding-small: 8px; /* Espaciado pequeño */
+  --padding-medium: 16px; /* Espaciado medio */
+  --padding-large: 32px; /* Espaciado grande */
+  
+  --max-width-form: 600px; /* Ancho máximo para el formulario */
+  --min-height-textarea: 100px; /* Altura mínima para el textarea */
+  --border-radius: 8px; /* Radio de borde general */
 }
 
+/* Estilos generales para la página */
+/* Importante!!!!!! */
+body { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family); /* Usar la fuente definida globalmente */
+  color: var(--base-color); /* Asegurarse que el texto tiene el color correcto */
+  background-color: var(--background-primary); /* Establecer el fondo de toda la página */
+}
+
+/* Contenedor principal */
+.container {
+  min-height: 100vh;
+  padding: var(--padding-large);
+}
+
+/* Contenedor del formulario */
+.form-container {
+  max-width: var(--max-width-form);
+  margin: var(--padding-medium) auto;
+  border: 2px solid var(--base-color); /* Borde con el color base (blanco suave) */
+  border-radius: var(--border-radius); /* Radio de borde */
+  padding: var(--padding-medium);
+}
+
+/* Estilos para el título del formulario */
+.form-container h2 {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--padding-medium);
+  text-align: center;
+}
+
+/* Estilos del formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-small);
+}
+
+/* Estilos para los campos de entrada (input, textarea, select) */
+.form input,
+.form textarea,
+.form select {
+  padding: var(--padding-small);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  font-size: var(--font-size-small);
+}
+
+/* Estilos para las etiquetas de los campos */
+.form label {
+  font-size: var(--font-size-small);
+  margin-bottom: calc(var(--padding-small) / 2);
+}
+
+/* Estilos para el textarea */
+.form textarea {
+  min-height: var(--min-height-textarea);
+  resize: vertical;
+}
+
+/* Estilos para el botón */
+.form button {
+  padding: var(--padding-small) var(--padding-medium);
+  background-color: var(--base-color); /* Fondo blanco suave */
+  color: var(--background-primary); /* Color del texto oscuro */
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  margin-top: var(--padding-small);
+}
+
+/* Efecto hover para el botón */
+.form button:hover {
+  opacity: 0.9;
+}
