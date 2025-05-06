@@ -5,7 +5,7 @@ export class EventService {
 
   // TODO: Get real token based on user login
   token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXRAa2FhYWF0LmNvbSIsImlhdCI6MTc0NjUyNjcyNywiZXhwIjoxNzQ2NjEzMTI3fQ.IBjnxpe5mnHW_zrMIjDiNtJMk_EUpuLH4PSvNIXsftJCwo5BQfsnjij0gmgriEhQMphKi8ACc9q_Gb19FQ9R6g";
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXRAa2FhYWF0LmNvbSIsImlhdCI6MTc0NjU1NzUxMSwiZXhwIjoxNzQ2NjQzOTExfQ.b271Gx5gfVgidxYjFHz0yhpi_WfhlpLThtAzTkEQ_17NOpHjEvxjhcam6oQDwEvbX_Zh9AZ3S9_5se5cQ4Io0A";
 
   getAllEvents() {
     const url = `${this.baseUrl}/event`;
