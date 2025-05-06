@@ -5,8 +5,9 @@ import UploadPhotos from "../../components/uploadPhotos/UploadPhotos";
 import CardEvent from "../../components/cardEvent/CardEvent";
 import Button from "../../components/button/Button";
 import { EventService } from "../../Service/EventService";
-import EventModal from "../../components/EventModal/EventModal";
+import EventModal from "../../components/eventModal/EventModal";
 import SectionName from "../../components/sectionName/SectionName";
+import EventDetails from "../../components/eventDetails/EventDetails";
 
 const AddEvents = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,8 @@ const AddEvents = () => {
   });
 
   const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null); // For modal
+  const [selectedEvent, setSelectedEvent] = useState(null); // For edit modal
+  const [detailsEvent, setDetailsEvent] = useState(null);   // For view details modal
 
   // Instance of EventService
   const eventService = new EventService();
@@ -64,22 +66,34 @@ const AddEvents = () => {
     });
   };
 
-  // Modal handlers
-  const handleViewEvent = async (event) => {
-    console.log("Event clicked for modal:", event); // <-- Agrega este log
-    // Opcional: obtener datos frescos
-    // const freshEvent = await eventService.getEventById(event.id);
-    setSelectedEvent(event); // o setSelectedEvent(freshEvent);
+  // Handler for opening the edit modal
+  const handleEdit = (event) => {
+    setSelectedEvent(event);
   };
 
+  // Handler for closing the edit modal
   const closeModal = () => {
     setSelectedEvent(null);
   };
 
+  // Handler for opening the details section
+  const handleViewDetails = (event) => {
+    console.log("Evento clicado:", event);
+    setDetailsEvent(event);
+  };
+
+  // Handler for closing the details section
+  const closeDetails = () => setDetailsEvent(null);
+
+  // Dummy handler for attendee list (implement as needed)
+  const handleAttendeeList = (event) => {
+    alert("Attendee list for: " + event.title);
+  };
+
   return (
     <div className="container">
- <Navbar />
- <SectionName>Create an event</SectionName>
+      <Navbar />
+      <SectionName>Create an event</SectionName>
 
       <div className="upload-section">
         <h1 className="section-title">Upload your photos here:</h1>
@@ -157,18 +171,28 @@ const AddEvents = () => {
 
       {events.map((event, index) => (
         <CardEvent
-          key={index}
+          key={event.id || index}
           title={event.title}
           description={event.description}
           date={event.date}
           category={event.category}
           location={event.location}
           maxAttendees={event.maxAttendees}
-          onView={() => handleViewEvent(event)}
+          buttons={[
+            { text: "View details", onClick: () => handleViewDetails(event) },
+            { text: "Edit", onClick: () => handleEdit(event) },
+            { text: "Attendee list", onClick: () => handleAttendeeList(event) },
+          ]}
         />
       ))}
 
+      {/* Modal para editar evento */}
       <EventModal event={selectedEvent} onClose={closeModal} />
+
+      {/* Sección para ver detalles del evento */}
+      {detailsEvent && (
+        <EventDetails event={detailsEvent} onClose={closeDetails} />
+      )}
     </div>
   );
 };
