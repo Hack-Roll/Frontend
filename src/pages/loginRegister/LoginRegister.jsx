@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./LoginRegister.module.css";
 import Navbar from "../../components/navbar/Navbar";
 import { UserService } from "../../Service/UserService";
 
 const LoginRegister = () => {
+  const [users, setUsers] = useState([]);
+  const userService = new UserService();
+  const navigate = useNavigate(); 
+  const [successMessage, setSuccessMessage] = useState("");
   const [isLogin, setIsLogin] = useState(true); 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -14,33 +19,27 @@ const LoginRegister = () => {
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
+    setSuccessMessage("");
   };
-
-  const [users, setUsers] = useState([]);
-
-  // Crear una instancia de la clase Service
-  const userService = new UserService();
-
-  // No es necesario en esta página creo
-  // useEffect para obtener los eventos al cargar el componente
-  // useEffect(() => {
-  //   eventService.getAllEvents().then((res) => {
-  //     setEvents((prev) => res.content);
-  //   });
-  // }, []); // <-- empty array means "run once"
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     userService.createUser(formData).then((res) => {
       setUsers((prev) => [...prev, res]);
+      setSuccessMessage(`Hi ${formData.firstName}, your account has been created successfully!`);
       setFormData({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
       });
+      //Timeout después de 4 segs - lleva el usuario al home
+      setTimeout(() => {
+        navigate("/");
+      }, 4000);
     }).catch((err) => {
       console.error("Registration error:", err);
+      setSuccessMessage("");
     });
   };
 
@@ -160,6 +159,10 @@ const LoginRegister = () => {
           </>
         )}
       </form>
+      {/* Login successful msg */}
+      {successMessage && (
+          <p className={styles.successMessage}>{successMessage}</p>
+        )}
       <p className={styles.toggleText}>
         {isLogin
           ? "¿No tienes cuenta? "
