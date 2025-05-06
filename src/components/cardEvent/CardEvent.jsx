@@ -9,8 +9,7 @@ const CardEvent = ({
   category,
   location,
   maxAttendees,
-  onView, // function to view or edit event
-  onDetails, // function to view event details
+  buttons = [], // Array de { text, onClick }
 }) => {
   return (
     <div className="card-event">
@@ -22,17 +21,10 @@ const CardEvent = ({
         {category === "Presencial" && <div>{location}</div>}
         <div>Max attendees: {maxAttendees}</div>
       </div>
-
       <div className="card-buttons">
-        <Button text="View details" onClick={onDetails} />
-        <Button
-          text="Edit"
-          onClick={() => {
-            console.log("Button clicked!", title);
-            onView();
-          }}
-        />
-        <Button text="Attendee list" />
+        {buttons.map((btn, idx) => (
+          <Button key={idx} text={btn.text} onClick={btn.onClick} />
+        ))}
       </div>
     </div>
   );

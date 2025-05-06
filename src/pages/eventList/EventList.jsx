@@ -28,15 +28,19 @@ const EventList = () => {
           ) : (
             events.map((event, idx) => (
               <CardEvent
-                key={event.id || idx}
                 title={event.title}
                 description={event.description}
                 date={event.date}
                 category={event.category}
                 location={event.location}
                 maxAttendees={event.maxAttendees}
-                onView={() => {}}
-                onDetails={() => {}}
+                buttons={[
+                  {
+                    text: "View details",
+                    onClick: () => handleViewDetails(event),
+                  },
+                  { text: "Join", onClick: () => handleJoin(event) },
+                ]}
               />
             ))
           )}
