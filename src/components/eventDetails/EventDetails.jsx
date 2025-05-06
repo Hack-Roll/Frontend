@@ -1,15 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./eventDetails.css";
 import Button from "../button/Button";
 import SectionName from "../sectionName/SectionName";
 import Location from "../../assets/icons/Location.svg";
 import Calendary from "../../assets/icons/Calendary.svg";
 
-const EventDetails = ({ event, onClose }) => {
+const EventDetails = forwardRef(({ event, onClose }, ref) => {
   if (!event) return null;
 
   return (
-    <div className="event-details-container">
+    <div ref={ref} className="event-details-container">
       <SectionName>Event Details</SectionName>
       <div className="event-details-content">
         <div className="form-group">
@@ -25,7 +25,11 @@ const EventDetails = ({ event, onClose }) => {
         <div className="form-group">
           <label>Fecha</label>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <img src={Calendary} alt="Calendary" style={{ marginRight: 4, width: 20, height: 20 }} />
+            <img
+              src={Calendary}
+              alt="Calendary"
+              style={{ marginRight: 4, width: 20, height: 20 }}
+            />
             <span>{event.date}</span>
           </div>
         </div>
@@ -33,7 +37,11 @@ const EventDetails = ({ event, onClose }) => {
         <div className="form-group">
           <label>Dirección o modalidad online</label>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <img src={Location} alt="Location" style={{ marginRight: 4, width: 20, height: 20 }} />
+            <img
+              src={Location}
+              alt="Location"
+              style={{ marginRight: 4, width: 20, height: 20 }}
+            />
             <span>{event.location}</span>
           </div>
         </div>
@@ -54,6 +62,6 @@ const EventDetails = ({ event, onClose }) => {
       </div>
     </div>
   );
-};
+});
 
 export default EventDetails;
