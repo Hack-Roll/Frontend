@@ -1,0 +1,38 @@
+.footer {
+  background-color: #f5f5f5; 
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  border-top: 5px solid #0a0a5e; 
+  position: fixed;
+  bottom: 0;
+  margin: auto;
+  margin-right: 0;;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 120px; 
+  height: auto;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 20px; 
+}
+
+.icon {
+  width: 40px; 
+  height: 40px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2); 
+}
