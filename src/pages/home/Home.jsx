@@ -1,15 +1,26 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
+import styles from './Home.module.css';
+import Footer from '../../components/footer/Footer';
 
 const Home = () => {
   return (
-    <div>
+    <div className={styles.homeContainer}>
       <Navbar />
-      <h1>¡Bienvenide a Hack n' Roll!</h1>
-      <p>La plataforma donde los hackers, makers y soñadores se reúnen para construir el futuro.
-En Hack n' Roll, organizamos y compartimos hackatones, talleres y eventos tech que impulsan la innovación y la colaboración. Ya sea online o presencial, aquí es donde tus ideas cobran vida junto a una comunidad apasionada por la tecnología.
-¿Estás list@ para crear algo increíble?
-🔥 Explora eventos, únete a la comunidad y prepárate para hackear el mundo.</p>
+
+
+      <img src="" alt=  "" />
+      <div className={styles.content}>
+        <h1>¡Welcome to Hack n' Roll!</h1>
+        <p>
+          The platform where hackers, makers, and dreamers come together to build the future.
+          At Hack n' Roll, we organize and share hackathons, workshops, and tech events that drive innovation and collaboration. Whether online or in person, this is where your ideas come to life alongside a passionate tech community.
+          Ready to create something amazing?
+          🔥Explore events, join the community, and get ready to hack the world.
+        </p>
+        <Footer />
+       
+      </div>
     </div>
   );
 };
