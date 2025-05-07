@@ -85,8 +85,7 @@ const EventDetailsEditable = ({ eventData, onChange, onSave, onCancel, onClose }
 
         <div className="event-details-buttons">
           <Button text="Guardar" onClick={onSave} />
-          <Button text="Delete Event" onClick={onCancel} />
-        </div>
+          </div>
       </div>
     </div>
   );

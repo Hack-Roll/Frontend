@@ -71,12 +71,14 @@ const AddEvents = () => {
   };
 
   const handleEditSave = () => {
-    eventService.updateEvent(editableEvent.id, editableEvent).then((updatedEvent) => {
-      setEvents((prev) =>
-        prev.map((ev) => (ev.id === updatedEvent.id ? updatedEvent : ev))
-      );
-      setEditableEvent(null); // Cierra el editor después de guardar
-    });
+    eventService
+      .updateEvent(editableEvent.id, editableEvent)
+      .then((updatedEvent) => {
+        setEvents((prev) =>
+          prev.map((ev) => (ev.id === updatedEvent.id ? updatedEvent : ev))
+        );
+        setEditableEvent(null); // Cierra el editor después de guardar
+      });
   };
 
   const handleEditCancel = () => {
@@ -91,8 +93,20 @@ const AddEvents = () => {
     setSelectedEvent(null);
   };
 
-  const handleAttendeeList = (event) => {
-    alert("Attendee list for: " + event.title);
+  // const handleAttendeeList = (event) => {
+  //   alert("Attendee list for: " + event.title);
+  // };
+
+  const handleDelete = (eventId) => {
+    eventService
+      .deleteEvent(eventId)
+      .then(() => {
+        setEvents((prev) => prev.filter((event) => event.id !== eventId)); // Elimina el evento del estado
+      })
+      .catch((error) => {
+        console.error("Error deleting event:", error);
+        alert("Failed to delete the event. Please try again.");
+      });
   };
 
   return (
@@ -183,7 +197,7 @@ const AddEvents = () => {
           buttons={[
             { text: "View details", onClick: () => handleViewDetails(event) },
             { text: "Edit", onClick: () => handleEdit(event) },
-            { text: "Attendee list", onClick: () => handleAttendeeList(event) },
+            { text: "Delete", onClick: () => handleDelete(event.id) }, // Botón para eliminar
           ]}
         />
       ))}
@@ -199,7 +213,6 @@ const AddEvents = () => {
           onClose={handleEditCancel} // Para la "X"
         />
       )}
-      
     </div>
   );
 };
