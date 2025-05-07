@@ -5,7 +5,6 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <SectionName>Event List</SectionName>
       <h1>Bienvenido a la página de inicio</h1>
       <p>Explora los eventos y más desde aquí.</p>
     </div>
