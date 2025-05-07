@@ -190,7 +190,6 @@ const AddEvents = () => {
           buttons={[
             { text: "View details", onClick: () => handleViewDetails(event) },
             { text: "Edit", onClick: () => handleEdit(event) },
-            { text: "Attendee list", onClick: () => handleAttendeeList(event) },
           ]}
         />
       ))}
