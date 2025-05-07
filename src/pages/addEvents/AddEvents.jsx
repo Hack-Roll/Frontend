@@ -71,11 +71,11 @@ const AddEvents = () => {
   };
 
   const handleEditSave = () => {
-    eventService.updateEvent(editableEvent).then((updatedEvent) => {
+    eventService.updateEvent(editableEvent.id, editableEvent).then((updatedEvent) => {
       setEvents((prev) =>
         prev.map((ev) => (ev.id === updatedEvent.id ? updatedEvent : ev))
       );
-      setEditableEvent(null);
+      setEditableEvent(null); // Cierra el editor después de guardar
     });
   };
 
