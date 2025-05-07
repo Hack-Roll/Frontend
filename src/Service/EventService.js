@@ -3,9 +3,22 @@ import axios from "axios";
 export class EventService {
   baseUrl = "http://localhost:8080/api";
 
-  // TODO: Get real token based on user login
-  token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXRAa2FhYWF0LmNvbSIsImlhdCI6MTc0NjU1NzUxMSwiZXhwIjoxNzQ2NjQzOTExfQ.b271Gx5gfVgidxYjFHz0yhpi_WfhlpLThtAzTkEQ_17NOpHjEvxjhcam6oQDwEvbX_Zh9AZ3S9_5se5cQ4Io0A";
+  getToken() {
+    return localStorage.getItem("token");
+  }
+
+  getRequestOptions() {
+    const token = this.getToken();
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  }
+
+  // manualtoken =
+  //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXRAa2FhYWF0LmNvbSIsImlhdCI6MTc0NjU1NzUxMSwiZXhwIjoxNzQ2NjQzOTExfQ.b271Gx5gfVgidxYjFHz0yhpi_WfhlpLThtAzTkEQ_17NOpHjEvxjhcam6oQDwEvbX_Zh9AZ3S9_5se5cQ4Io0A";
+
 
   getAllEvents() {
     const url = `${this.baseUrl}/event`;
@@ -34,13 +47,5 @@ export class EventService {
     return axios
       .put(url, eventData, this.getRequestOptions())
       .then((response) => response.data);
-  }
-
-  getRequestOptions() {
-    return {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    };
   }
 }
