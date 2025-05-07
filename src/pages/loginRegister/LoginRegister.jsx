@@ -45,7 +45,23 @@ const LoginRegister = () => {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("Login not implemented yet");
+    userService.login({ email: formData.email, password: formData.password })
+      .then((res) => {
+        if (res && res.token) {
+          localStorage.setItem("token", res.token);
+          setSuccessMessage("You have logged in");
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
+        } else {
+          console.error("Token not received:", res);
+          setSuccessMessage("");
+        }
+      })
+      .catch((err) => {
+        console.error("Error when signing in:", err);
+        setSuccessMessage("");
+      });
   };
 
   // HANDLE CHANGE
@@ -76,6 +92,7 @@ const LoginRegister = () => {
                 type="email"
                 id="email"
                 placeholder="Ingresa tu email"
+                name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -87,6 +104,7 @@ const LoginRegister = () => {
               <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="Ingresa tu contraseña"
                 required
                 value={formData.password}
