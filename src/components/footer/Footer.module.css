@@ -5,7 +5,10 @@
   justify-content: space-between; 
   align-items: center;
   border-top: 5px solid #0a0a5e; 
-  margin-top: auto; 
+  position: fixed;
+  bottom: 0;
+  margin: auto;
+  margin-right: 0;;
 }
 
 .logoContainer {
