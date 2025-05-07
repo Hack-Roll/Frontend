@@ -10,11 +10,11 @@
 .form-container {
   max-width: var(--max-width-form);
   margin: var(--padding-medium) auto;
-  border: 2px solid #ff8c00; /* Borde naranja */
-  border-radius: 12px; /* Radio de borde de 12px */
+  border: 2px solid #ff8c00; 
+  border-radius: 12px; 
   padding: var(
     --padding-medium
-  ); /* Padding para que el contenido no toque el borde */
+  ); 
 }
 
 .form-container h2 {

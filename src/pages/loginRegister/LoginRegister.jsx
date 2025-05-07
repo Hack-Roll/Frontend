@@ -33,7 +33,7 @@ const LoginRegister = () => {
         email: "",
         password: "",
       });
-      //Timeout después de 4 segs - lleva el usuario al home
+      
       setTimeout(() => {
         navigate("/");
       }, 4000);
@@ -64,7 +64,7 @@ const LoginRegister = () => {
       });
   };
 
-  // HANDLE CHANGE
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
   
@@ -164,20 +164,11 @@ const LoginRegister = () => {
                 className={styles.input}
               />
             </div>
-            {/* <div className={styles.formGroup}>
-              <label htmlFor="photo" className={styles.label}>Subir foto (opcional)</label>
-              <input
-                type="file"
-                id="photo"
-                // accept="image*" or similar
-                className={styles.input}
-              />
-            </div> */}
             <button type="submit" className={styles.btnRegister}>Registrarse</button>
           </>
         )}
       </form>
-      {/* Login successful msg */}
+      
       {successMessage && (
           <p className={styles.successMessage}>{successMessage}</p>
         )}

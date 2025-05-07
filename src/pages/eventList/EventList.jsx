@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import WebImage from "../../assets/webImage.png";
 import CardEvent from "../../components/cardEvent/CardEvent";
 import SectionName from "../../components/sectionName/SectionName";
 import "./EventList.css";
@@ -21,7 +20,6 @@ const EventList = () => {
       <Navbar />
       <SectionName>Event List</SectionName>
       <div className="event-list-container">
-        <img src={WebImage} alt="Event" className="event-list-image" />
         <div className="event-card-wrapper">
           {events.length === 0 ? (
             <p>No events found.</p>
@@ -39,7 +37,6 @@ const EventList = () => {
                     text: "View details",
                     onClick: () => handleViewDetails(event),
                   },
-                  { text: "Join", onClick: () => handleJoin(event) },
                 ]}
               />
             ))

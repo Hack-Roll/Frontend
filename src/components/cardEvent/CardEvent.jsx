@@ -9,7 +9,7 @@ const CardEvent = ({
   category,
   location,
   maxAttendees,
-  buttons = [], // Array de { text, onClick }
+  buttons = [], 
 }) => {
   return (
     <div className="card-event">

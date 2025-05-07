@@ -3,10 +3,6 @@ import axios from "axios";
 export class UserService {
   baseUrl = "http://localhost:8080/api";
 
-  // Manual token hasta tener el login funcional
-  // manualToken =
-  //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwYW9AcGFvb28uY29tIiwiaWF0IjoxNzQ2NTI0MDYwLCJleHAiOjE3NDY2MTA0NjB9.pM-4iZqrhivSVWJ5gkqUhAnUvhKZa7NtVVxl-Y8sDDvD0TDcAp8JTmX-iVdrgy2ukWjpjsqJjCKuPTfrV9_0rA";
-
   getToken() {
     return localStorage.getItem("token")
   }

@@ -20,8 +20,8 @@ const AddEvents = () => {
   });
 
   const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null); // Para detalles
-  const [editableEvent, setEditableEvent] = useState(null); // Para edición
+  const [selectedEvent, setSelectedEvent] = useState(null); 
+  const [editableEvent, setEditableEvent] = useState(null); 
 
   const eventService = new EventService();
 
@@ -75,7 +75,7 @@ const AddEvents = () => {
       setEvents((prev) =>
         prev.map((ev) => (ev.id === updatedEvent.id ? updatedEvent : ev))
       );
-      setEditableEvent(null); // Cierra el editor después de guardar
+      setEditableEvent(null);
     });
   };
 
@@ -195,8 +195,8 @@ const AddEvents = () => {
           eventData={editableEvent}
           onChange={handleEditChange}
           onSave={handleEditSave}
-          onCancel={handleEditCancel} // Para el botón "Delete Event"
-          onClose={handleEditCancel} // Para la "X"
+          onCancel={handleEditCancel} 
+          onClose={handleEditCancel} 
         />
       )}
       
