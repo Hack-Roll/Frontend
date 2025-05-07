@@ -5,19 +5,34 @@ export class EventService {
 
   // TODO: Get real token based on user login
   token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwYW9AcGFvb28uY29tIiwiaWF0IjoxNzQ2NTI0MDYwLCJleHAiOjE3NDY2MTA0NjB9.pM-4iZqrhivSVWJ5gkqUhAnUvhKZa7NtVVxl-Y8sDDvD0TDcAp8JTmX-iVdrgy2ukWjpjsqJjCKuPTfrV9_0rA";
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXRAa2FhYWF0LmNvbSIsImlhdCI6MTc0NjU1NzUxMSwiZXhwIjoxNzQ2NjQzOTExfQ.b271Gx5gfVgidxYjFHz0yhpi_WfhlpLThtAzTkEQ_17NOpHjEvxjhcam6oQDwEvbX_Zh9AZ3S9_5se5cQ4Io0A";
 
   getAllEvents() {
-    // GET http://localhost:8080/api/event
     const url = `${this.baseUrl}/event`;
     return axios.get(url).then((response) => response.data);
   }
 
+  // obtiene los detalles de un evento.
+  getEventById(eventId) {
+    // GET http://localhost:8080/api/event/{id}
+    const url = `${this.baseUrl}/event/${eventId}`;
+    return axios
+      .get(url, this.getRequestOptions())
+      .then((response) => response.data);
+  }
+
   createEvent(event) {
-    // POST http://localhost:8080/api/user/event
     const url = `${this.baseUrl}/user/event`;
     return axios
       .post(url, event, this.getRequestOptions())
+      .then((response) => response.data);
+  }
+  // actualiza un evento existente.
+  updateEvent(eventId, eventData) {
+    // PUT http://localhost:8080/api/user/event/{id}
+    const url = `${this.baseUrl}/user/event/${eventId}`;
+    return axios
+      .put(url, eventData, this.getRequestOptions())
       .then((response) => response.data);
   }
 

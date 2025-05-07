@@ -9,6 +9,7 @@ const CardEvent = ({
   category,
   location,
   maxAttendees,
+  buttons = [], // Array de { text, onClick }
 }) => {
   return (
     <div className="card-event">
@@ -17,14 +18,13 @@ const CardEvent = ({
         <p>{description}</p>
         <div>{date}</div>
         <div>{category}</div>
-        {/* TODO: Only show if category is "Presential" */}
-        <div>{location}</div>
+        {category === "Presencial" && <div>{location}</div>}
         <div>Max attendees: {maxAttendees}</div>
       </div>
-
       <div className="card-buttons">
-        <Button text="Ver o editar evento" />
-        <Button text="Ver lista de asistentes" />
+        {buttons.map((btn, idx) => (
+          <Button key={idx} text={btn.text} onClick={btn.onClick} />
+        ))}
       </div>
     </div>
   );

@@ -17,10 +17,15 @@
   color-scheme: light dark;
   --base-color: rgba(255, 255, 255, 0.87); /* Color de texto base */
   --background-primary: #040657; /* Fondo principal */
-  --font-family: "Tomorrow", sans-serif; /* Fuente global */
-  --font-size-small: 0.875rem; /* Tamaño de fuente pequeño */
-  --font-size-medium: 1rem; /* Tamaño de fuente medio */
-  --font-size-large: 1.25rem; /* Tamaño de fuente grande */
+  
+  --font-family-title: "Tomorrow", sans-serif; /* Fuente para títulos y botones */
+  --font-family-text: "Noto Sans", sans-serif; /* Fuente para texto */
+  --font-weight-title: 600; /* Semibold para títulos y botones */
+  --font-weight-text: 400;  /* Regular para texto */
+
+  --font-size-small: 0.875rem;
+  --font-size-medium: 0,70rem;
+  --font-size-large: 1.25rem;
 
   --padding-small: 8px; /* Espaciado pequeño */
   --padding-medium: 16px; /* Espaciado medio */
@@ -33,17 +38,37 @@
 
 /* Estilos generales para la página */
 /* Importante!!!!!! */
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--font-family); /* Usar la fuente definida globalmente */
-  color: var(
-    --base-color
-  ); /* Asegurarse que el texto tiene el color correcto */
-  background-color: var(
-    --background-primary
-  ); /* Establecer el fondo de toda la página */
+  font-family: var(--font-family-text); /* Texto general */
+  font-weight: var(--font-weight-text);
+  color: var(--base-color);
+  background-color: var(--background-primary);
+}
+
+/* Títulos de páginas y secciones */
+h1, h2, .section-title {
+  font-family: var(--font-family-title);
+  font-weight: var(--font-weight-title);
+  letter-spacing: 0.5px;
+  color: var(--base-color);
+}
+
+/* Texto general */
+p, label, input, select, textarea {
+  font-family: var(--font-family-text);
+  font-weight: var(--font-weight-text);
+}
+
+/* Botones */
+.button {
+  font-family: var(--font-family-title);
+  font-weight: var(--font-weight-title);
+  letter-spacing: 0.5px;
+  /* Otros estilos de botón pueden ir aquí */
 }
 
 /* Contenedor principal */
@@ -56,8 +81,8 @@ body {
 .form-container {
   max-width: var(--max-width-form);
   margin: var(--padding-medium) auto;
-  border: 2px solid var(--base-color); /* Borde con el color base (blanco suave) */
-  border-radius: var(--border-radius); /* Radio de borde */
+  border: 2px solid var(--base-color);
+  border-radius: var(--border-radius);
   padding: var(--padding-medium);
 }
 
@@ -95,5 +120,4 @@ body {
 /* Estilos para el textarea */
 .form textarea {
   min-height: var(--min-height-textarea);
-  resize: vertical;
-}
+  resize: vert
