@@ -36,6 +36,11 @@ export class EventService {
       .then((response) => response.data);
   }
 
+  deleteEvent(eventId) {
+    const url = `${this.baseUrl}/user/event/${eventId}`;
+    return axios.delete(url, this.getRequestOptions()).then((response) => response.data);
+  }
+
   getRequestOptions() {
     return {
       headers: {

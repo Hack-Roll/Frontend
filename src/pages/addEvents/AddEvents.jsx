@@ -95,6 +95,13 @@ const AddEvents = () => {
     alert("Attendee list for: " + event.title);
   };
 
+  const handleDeleteEvent = (eventId) => {
+    eventService.deleteEvent(eventId).then(() => {
+      setEvents((prev) => prev.filter((event) => event.id !== eventId));
+      setEditableEvent(null); // Cierra el editor después de eliminar
+    });
+  };
+
   return (
     <div className="container">
       <Navbar />
@@ -190,15 +197,15 @@ const AddEvents = () => {
       {selectedEvent && (
         <EventDetails event={selectedEvent} onClose={closeDetails} />
       )}
-      {editableEvent && (
-        <EventDetailsEditable
-          eventData={editableEvent}
-          onChange={handleEditChange}
-          onSave={handleEditSave}
-          onCancel={handleEditCancel} // Para el botón "Delete Event"
-          onClose={handleEditCancel} // Para la "X"
-        />
-      )}
+{editableEvent && (
+  <EventDetailsEditable
+    eventData={editableEvent}
+    onChange={handleEditChange}
+    onSave={handleEditSave}
+    onCancel={() => handleDeleteEvent(editableEvent.id)} // Llama a handleDeleteEvent
+    onClose={handleEditCancel}
+  />
+)}
       
     </div>
   );
