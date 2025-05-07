@@ -1,13 +1,79 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./LoginRegister.module.css";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
+import { UserService } from "../../Service/UserService";
 
 const LoginRegister = () => {
+  const [users, setUsers] = useState([]);
+  const userService = new UserService();
+  const navigate = useNavigate(); 
+  const [successMessage, setSuccessMessage] = useState("");
   const [isLogin, setIsLogin] = useState(true); 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
+    setSuccessMessage("");
   };
+
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+    userService.createUser(formData).then((res) => {
+      setUsers((prev) => [...prev, res]);
+      setSuccessMessage(`Hi ${formData.firstName}, your account has been created successfully!`);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+      });
+      //Timeout después de 4 segs - lleva el usuario al home
+      setTimeout(() => {
+        navigate("/");
+      }, 4000);
+    }).catch((err) => {
+      console.error("Registration error:", err);
+      setSuccessMessage("");
+    });
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    userService.login({ email: formData.email, password: formData.password })
+      .then((res) => {
+        if (res && res.token) {
+          localStorage.setItem("token", res.token);
+          setSuccessMessage("You have logged in");
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
+        } else {
+          console.error("Token not received:", res);
+          setSuccessMessage("");
+        }
+      })
+      .catch((err) => {
+        console.error("Error when signing in:", err);
+        setSuccessMessage("");
+      });
+  };
+
+  // HANDLE CHANGE
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }; 
+
 
   return (
 
@@ -17,7 +83,7 @@ const LoginRegister = () => {
             
     <div className={styles.loginContainer}>
       <h2 className={styles.title}>{isLogin ? "Log In" : "Registro"}</h2>
-      <form>
+      <form onSubmit={isLogin ? handleLoginSubmit : handleRegisterSubmit}>
         {isLogin ? (
           <>
             <div className={styles.formGroup}>
@@ -26,6 +92,9 @@ const LoginRegister = () => {
                 type="email"
                 id="email"
                 placeholder="Ingresa tu email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
                 className={styles.input}
               />
@@ -35,8 +104,11 @@ const LoginRegister = () => {
               <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="Ingresa tu contraseña"
                 required
+                value={formData.password}
+                onChange={handleChange}
                 className={styles.input}
               />
             </div>
@@ -49,8 +121,10 @@ const LoginRegister = () => {
               <input
                 type="text"
                 id="firstName"
+                name="firstName"
                 placeholder="Ingresa tu nombre"
                 required
+                onChange={handleChange}
                 className={styles.input}
               />
             </div>
@@ -59,8 +133,10 @@ const LoginRegister = () => {
               <input
                 type="text"
                 id="lastName"
+                name="lastName"
                 placeholder="Ingresa tu apellido"
                 required
+                onChange={handleChange}
                 className={styles.input}
               />
             </div>
@@ -69,8 +145,10 @@ const LoginRegister = () => {
               <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="Ingresa tu correo"
                 required
+                onChange={handleChange}
                 className={styles.input}
               />
             </div>
@@ -79,23 +157,30 @@ const LoginRegister = () => {
               <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="Crea una contraseña"
                 required
+                onChange={handleChange}
                 className={styles.input}
               />
             </div>
-            <div className={styles.formGroup}>
+            {/* <div className={styles.formGroup}>
               <label htmlFor="photo" className={styles.label}>Subir foto (opcional)</label>
               <input
                 type="file"
                 id="photo"
+                // accept="image*" or similar
                 className={styles.input}
               />
-            </div>
+            </div> */}
             <button type="submit" className={styles.btnRegister}>Registrarse</button>
           </>
         )}
       </form>
+      {/* Login successful msg */}
+      {successMessage && (
+          <p className={styles.successMessage}>{successMessage}</p>
+        )}
       <p className={styles.toggleText}>
         {isLogin
           ? "¿No tienes cuenta? "
@@ -108,5 +193,6 @@ const LoginRegister = () => {
             </>
   );
 };
+
 
 export default LoginRegister;
