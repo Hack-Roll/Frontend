@@ -5,9 +5,9 @@ import UploadPhotos from "../../components/uploadPhotos/UploadPhotos";
 import CardEvent from "../../components/cardEvent/CardEvent";
 import Button from "../../components/button/Button";
 import { EventService } from "../../Service/EventService";
-import EventModal from "../../components/eventModal/EventModal";
 import SectionName from "../../components/sectionName/SectionName";
 import EventDetails from "../../components/eventDetails/EventDetails";
+import EventDetailsEditable from "../../components/eventDetailsEditable/EventDetailsEditable";
 
 const AddEvents = () => {
   const [formData, setFormData] = useState({
@@ -20,29 +20,22 @@ const AddEvents = () => {
   });
 
   const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null); // For edit modal
-  const [detailsEvent, setDetailsEvent] = useState(null);   // For view details modal
+  const [selectedEvent, setSelectedEvent] = useState(null); // Para detalles
+  const [editableEvent, setEditableEvent] = useState(null); // Para edición
 
-  // Instance of EventService
   const eventService = new EventService();
 
-  // Fetch events on mount
   useEffect(() => {
     eventService.getAllEvents().then((res) => {
       setEvents(res.content);
     });
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    let newValue = value;
-    if (name === "maxAttendees") {
-      newValue = Number(value);
-    }
-    if (name === "date") {
-      // Ensure the value is in "YYYY-MM-DDTHH:mm:00" format
-      newValue = value.length === 16 ? value + ":00" : value;
+    let newValue = name === "maxAttendees" ? Number(value) : value;
+    if (name === "date" && value.length === 16) {
+      newValue += ":00";
     }
     setFormData((prev) => ({
       ...prev,
@@ -50,7 +43,6 @@ const AddEvents = () => {
     }));
   };
 
-  // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     eventService.createEvent(formData).then((res) => {
@@ -66,26 +58,39 @@ const AddEvents = () => {
     });
   };
 
-  // Handler for opening the edit modal
   const handleEdit = (event) => {
+    setEditableEvent({ ...event });
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditableEvent((prev) => ({
+      ...prev,
+      [name]: name === "maxAttendees" ? Number(value) : value,
+    }));
+  };
+
+  const handleEditSave = () => {
+    eventService.updateEvent(editableEvent).then((updatedEvent) => {
+      setEvents((prev) =>
+        prev.map((ev) => (ev.id === updatedEvent.id ? updatedEvent : ev))
+      );
+      setEditableEvent(null);
+    });
+  };
+
+  const handleEditCancel = () => {
+    setEditableEvent(null);
+  };
+
+  const handleViewDetails = (event) => {
     setSelectedEvent(event);
   };
 
-  // Handler for closing the edit modal
-  const closeModal = () => {
+  const closeDetails = () => {
     setSelectedEvent(null);
   };
 
-  // Handler for opening the details section
-  const handleViewDetails = (event) => {
-    console.log("Evento clicado:", event);
-    setDetailsEvent(event);
-  };
-
-  // Handler for closing the details section
-  const closeDetails = () => setDetailsEvent(null);
-
-  // Dummy handler for attendee list (implement as needed)
   const handleAttendeeList = (event) => {
     alert("Attendee list for: " + event.title);
   };
@@ -94,12 +99,10 @@ const AddEvents = () => {
     <div className="container">
       <Navbar />
       <SectionName>Create an event</SectionName>
-
       <div className="upload-section">
         <h1 className="section-title">Upload your photos here:</h1>
         <UploadPhotos />
       </div>
-
       <div className="form-container">
         <h3 className="section-title">Enter your event details:</h3>
         <form className="form" onSubmit={handleSubmit}>
@@ -168,7 +171,6 @@ const AddEvents = () => {
           <Button text="Save Changes" type="submit" />
         </form>
       </div>
-
       {events.map((event, index) => (
         <CardEvent
           key={event.id || index}
@@ -185,14 +187,19 @@ const AddEvents = () => {
           ]}
         />
       ))}
-
-      {/* Modal para editar evento */}
-      <EventModal event={selectedEvent} onClose={closeModal} />
-
-      {/* Sección para ver detalles del evento */}
-      {detailsEvent && (
-        <EventDetails event={detailsEvent} onClose={closeDetails} />
+      {selectedEvent && (
+        <EventDetails event={selectedEvent} onClose={closeDetails} />
       )}
+      {editableEvent && (
+        <EventDetailsEditable
+          eventData={editableEvent}
+          onChange={handleEditChange}
+          onSave={handleEditSave}
+          onCancel={handleEditCancel} // Para el botón "Delete Event"
+          onClose={handleEditCancel} // Para la "X"
+        />
+      )}
+      
     </div>
   );
 };
