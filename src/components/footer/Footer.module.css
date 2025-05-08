@@ -8,7 +8,8 @@
   position: fixed;
   bottom: 0;
   margin: auto;
-  margin-right: 0;;
+  margin-right: 0;
+  width: 80;
 }
 
 .logoContainer {
@@ -24,11 +25,13 @@
 .socialIcons {
   display: flex;
   gap: 20px; 
+  width: 100px;
+  margin-left: 35px;
 }
 
 .icon {
-  width: 40px; 
-  height: 40px;
+  width: 10px; 
+  height: 10px;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
