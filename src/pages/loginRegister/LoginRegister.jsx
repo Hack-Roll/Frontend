@@ -26,14 +26,14 @@ const LoginRegister = () => {
     e.preventDefault();
     userService.createUser(formData).then((res) => {
       setUsers((prev) => [...prev, res]);
-      setSuccessMessage(`Hi ${formData.firstName}, your account has been created successfully!`);
+      setSuccessMessage(`Hi ${formData.firstName}, your account has been created successfully! You will be redirected to the homepage shortly.`);
       setFormData({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
       });
-      //Timeout después de 4 segs - lleva el usuario al home
+      
       setTimeout(() => {
         navigate("/");
       }, 4000);
@@ -49,7 +49,7 @@ const LoginRegister = () => {
       .then((res) => {
         if (res && res.token) {
           localStorage.setItem("token", res.token);
-          setSuccessMessage("You have logged in");
+          setSuccessMessage("You have logged in. You will be redirected to the homepage shortly.");
           setTimeout(() => {
             navigate("/");
           }, 4000);
@@ -64,7 +64,7 @@ const LoginRegister = () => {
       });
   };
 
-  // HANDLE CHANGE
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
   
@@ -82,16 +82,16 @@ const LoginRegister = () => {
             
             
     <div className={styles.loginContainer}>
-      <h2 className={styles.title}>{isLogin ? "Log In" : "Registro"}</h2>
+      <h2 className={styles.title}>{isLogin ? "Log in" : "Register"}</h2>
       <form onSubmit={isLogin ? handleLoginSubmit : handleRegisterSubmit}>
         {isLogin ? (
           <>
             <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.label}>Email de registro</label>
+              <label htmlFor="email" className={styles.label}>Registered email address</label>
               <input
                 type="email"
                 id="email"
-                placeholder="Ingresa tu email"
+                placeholder="Enter your email address"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -100,93 +100,84 @@ const LoginRegister = () => {
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="password" className={styles.label}>Contraseña</label>
+              <label htmlFor="password" className={styles.label}>Password</label>
               <input
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Ingresa tu contraseña"
+                placeholder="Enter your password"
                 required
                 value={formData.password}
                 onChange={handleChange}
                 className={styles.input}
               />
             </div>
-            <button type="submit" className={styles.btnLogin}>Log In</button>
+            <button type="submit" className={styles.btnLogin}>Log in</button>
           </>
         ) : (
           <>
             <div className={styles.formGroup}>
-              <label htmlFor="firstName" className={styles.label}>Nombre</label>
+              <label htmlFor="firstName" className={styles.label}>First name</label>
               <input
                 type="text"
                 id="firstName"
                 name="firstName"
-                placeholder="Ingresa tu nombre"
+                placeholder="Enter your first name(s)"
                 required
                 onChange={handleChange}
                 className={styles.input}
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="lastName" className={styles.label}>Apellido</label>
+              <label htmlFor="lastName" className={styles.label}>Last name</label>
               <input
                 type="text"
                 id="lastName"
                 name="lastName"
-                placeholder="Ingresa tu apellido"
+                placeholder="Enter your last names(s)"
                 required
                 onChange={handleChange}
                 className={styles.input}
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.label}>Correo electrónico</label>
+              <label htmlFor="email" className={styles.label}>Email address</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Ingresa tu correo"
+                placeholder="Enter your email address"
                 required
                 onChange={handleChange}
                 className={styles.input}
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="password" className={styles.label}>Contraseña</label>
+              <label htmlFor="password" className={styles.label}>Password. Your password can contain letters, numbers and the symbols _ - .</label>
               <input
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Crea una contraseña"
+                placeholder="Create your password"
                 required
                 onChange={handleChange}
                 className={styles.input}
               />
             </div>
-            {/* <div className={styles.formGroup}>
-              <label htmlFor="photo" className={styles.label}>Subir foto (opcional)</label>
-              <input
-                type="file"
-                id="photo"
-                // accept="image*" or similar
-                className={styles.input}
-              />
-            </div> */}
-            <button type="submit" className={styles.btnRegister}>Registrarse</button>
+            <button type="submit" className={styles.btnRegister}>Sign up</button>
           </>
         )}
       </form>
-      {/* Login successful msg */}
+      
       {successMessage && (
           <p className={styles.successMessage}>{successMessage}</p>
         )}
       <p className={styles.toggleText}>
         {isLogin
-          ? "¿No tienes cuenta? "
-          : "¿Ya tienes cuenta? "}
+          ? "Don't have an account with us?"
+          : "Do you already have an account with us?"}
         <button type="button" onClick={toggleForm} className={styles.toggleButton}>
-          {isLogin ? "Regístrate aquí" : "Inicia sesión aquí"}
+          {isLogin ? "Sign up here" : "Log in here"}
         </button>
       </p>
     </div>

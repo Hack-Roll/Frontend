@@ -55,13 +55,9 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          {isLoggedIn ? (
-            <Button text="Logout" onClick={handleLogout} />
-          ) : (
-            <NavLink to="/loginRegister">
-              <Button text="Login" />
-            </NavLink>
-          )}
+          {isLoggedIn ? (<Button text="Sign out" onClick={handleLogout} />
+            ) : (
+          <NavLink to="/loginRegister"><Button text="Sign in" /></NavLink>)}
         </li>
       </ul>
     </nav>

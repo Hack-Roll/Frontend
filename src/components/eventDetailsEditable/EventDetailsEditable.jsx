@@ -8,8 +8,7 @@ const EventDetailsEditable = ({ eventData, onChange, onSave, onCancel, onClose }
 
   return (
     <div className="event-details-container">
-      {/* Botón de cierre en la esquina superior derecha */}
-      <button className="close-button" onClick={onClose}>
+       <button className="close-button" onClick={onClose}>
         &times;
       </button>
       <SectionName>Edit Event</SectionName>

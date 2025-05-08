@@ -21,7 +21,6 @@ export class EventService {
     return axios.get(url).then((response) => response.data);
   }
 
-  // obtiene los detalles de un evento.
   getEventById(eventId) {
     // GET http://localhost:8080/api/event/{id}
     const url = `${this.baseUrl}/event/${eventId}`;
@@ -36,7 +35,7 @@ export class EventService {
       .post(url, event, this.getRequestOptions())
       .then((response) => response.data);
   }
-  // actualiza un evento existente.
+
   updateEvent(eventId, eventData) {
     const url = `${this.baseUrl}/user/event/${eventId}`;
     return axios

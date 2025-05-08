@@ -1,5 +1,5 @@
 .event-details-container {
-    position: relative; /* Necesario para posicionar elementos absolutos dentro */
+    position: relative; 
     border: 2px solid orange;
     border-radius: 16px;
     padding: 32px 24px;
@@ -48,7 +48,6 @@
     border-color: #ffb84d;
   }
 
-  /* Estilo para campos deshabilitados */
   .form-group input[disabled],
   .form-group select[disabled] {
     background-color: rgba(255, 255, 255, 0.1);
@@ -105,11 +104,11 @@
   }
 
   .info-message {
-    font-size: 12px; /* Letra más pequeña */
-    color: gray; /* Color gris para diferenciarlo del texto principal */
-    font-family: "Noto Sans", sans-serif; /* Fuente Noto Sans */
-    margin-top: 4px; /* Espaciado superior */
-    line-height: 1.4; /* Mejor legibilidad */
+    font-size: 12px;
+    color: gray; 
+    font-family: "Noto Sans", sans-serif; 
+    margin-top: 4px; 
+    line-height: 1.4; 
   }
 
   .close-button {

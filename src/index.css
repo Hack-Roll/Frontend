@@ -1,55 +1,39 @@
-/* :root {
- 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #040657;
-  font-family: 'Tomorrow', sans-serif;
-}
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-} */
 
 :root {
   color-scheme: light dark;
-  --base-color: rgba(255, 255, 255, 0.87); /* Color de texto base */
-  --background-primary: #040657; /* Fondo principal */
+  --base-color: rgba(255, 255, 255, 0.87); 
+  --background-primary: #040657; 
   
-  --font-family-title: "Tomorrow", sans-serif; /* Fuente para títulos y botones */
-  --font-family-text: "Noto Sans", sans-serif; /* Fuente para texto */
-  --font-weight-title: 600; /* Semibold para títulos y botones */
-  --font-weight-text: 400;  /* Regular para texto */
+  --font-family-title: "Tomorrow", sans-serif; 
+  --font-family-text: "Noto Sans", sans-serif; 
+  --font-weight-title: 600; 
+  --font-weight-text: 400;  
 
   --font-size-small: 0.875rem;
   --font-size-medium: 0,70rem;
   --font-size-large: 1.25rem;
 
-  --padding-small: 8px; /* Espaciado pequeño */
-  --padding-medium: 16px; /* Espaciado medio */
-  --padding-large: 32px; /* Espaciado grande */
+  --padding-small: 8px; 
+  --padding-medium: 16px; 
+  --padding-large: 32px; 
 
-  --max-width-form: 600px; /* Ancho máximo para el formulario */
-  --min-height-textarea: 100px; /* Altura mínima para el textarea */
-  --border-radius: 8px; /* Radio de borde general */
+  --max-width-form: 600px; 
+  --min-height-textarea: 100px; 
+  --border-radius: 8px; 
 }
 
-/* Estilos generales para la página */
-/* Importante!!!!!! */
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--font-family-text); /* Texto general */
+  font-family: var(--font-family-text); 
   font-weight: var(--font-weight-text);
   color: var(--base-color);
   background-color: var(--background-primary);
 }
 
-/* Títulos de páginas y secciones */
+
 h1, h2, .section-title {
   font-family: var(--font-family-title);
   font-weight: var(--font-weight-title);
@@ -57,27 +41,27 @@ h1, h2, .section-title {
   color: var(--base-color);
 }
 
-/* Texto general */
+
 p, label, input, select, textarea {
   font-family: var(--font-family-text);
   font-weight: var(--font-weight-text);
 }
 
-/* Botones */
+
 .button {
   font-family: var(--font-family-title);
   font-weight: var(--font-weight-title);
   letter-spacing: 0.5px;
-  /* Otros estilos de botón pueden ir aquí */
+ 
 }
 
-/* Contenedor principal */
+
 .container {
   min-height: 100vh;
   padding: var(--padding-large);
 }
 
-/* Contenedor del formulario */
+
 .form-container {
   max-width: var(--max-width-form);
   margin: var(--padding-medium) auto;
@@ -86,21 +70,21 @@ p, label, input, select, textarea {
   padding: var(--padding-medium);
 }
 
-/* Estilos para el título del formulario */
+
 .form-container h2 {
   font-size: var(--font-size-large);
   margin-bottom: var(--padding-medium);
   text-align: center;
 }
 
-/* Estilos del formulario */
+
 .form {
   display: flex;
   flex-direction: column;
   gap: var(--padding-small);
 }
 
-/* Estilos para los campos de entrada (input, textarea, select) */
+
 .form input,
 .form textarea,
 .form select {
@@ -111,13 +95,13 @@ p, label, input, select, textarea {
   font-size: var(--font-size-small);
 }
 
-/* Estilos para las etiquetas de los campos */
+
 .form label {
   font-size: var(--font-size-small);
   margin-bottom: calc(var(--padding-small) / 2);
 }
 
-/* Estilos para el textarea */
+
 .form textarea {
   min-height: var(--min-height-textarea);
   resize: vert
