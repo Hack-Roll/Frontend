@@ -106,7 +106,7 @@ const AddEvents = () => {
       <div className="form-container">
         <h3 className="section-title">Enter your event details:</h3>
         <form className="form" onSubmit={handleSubmit}>
-          <label htmlFor="title">Event name</label>
+          <label htmlFor="title">Name of event</label>
           <input
             type="text"
             id="title"
@@ -145,7 +145,7 @@ const AddEvents = () => {
             required
           >
             <option value="">Select an option</option>
-            <option value="Presencial">Presential</option>
+            <option value="Presencial">In person</option>
             <option value="Online">Online</option>
           </select>
 
@@ -168,7 +168,7 @@ const AddEvents = () => {
             rows="4"
           ></textarea>
 
-          <Button text="Save Changes" type="submit" />
+          <Button text="Save" type="submit" />
         </form>
       </div>
       {events.map((event, index) => (

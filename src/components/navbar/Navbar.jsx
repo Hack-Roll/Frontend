@@ -31,9 +31,9 @@ const Navbar = () => {
         <li><NavLink to="/addEvents" className={({ isActive }) => isActive ? styles.active : ''}>Add Events</NavLink></li>
         <li><NavLink to="/userProfile" className={({ isActive }) => isActive ? styles.active : ''}>Profile</NavLink></li>
         <li>
-          {isLoggedIn ? (<Button text="Logout" onClick={handleLogout} />
+          {isLoggedIn ? (<Button text="Sign out" onClick={handleLogout} />
             ) : (
-          <NavLink to="/loginRegister"><Button text="Login" /></NavLink>)}
+          <NavLink to="/loginRegister"><Button text="Sign in" /></NavLink>)}
         </li>
       </ul>
     </nav>
