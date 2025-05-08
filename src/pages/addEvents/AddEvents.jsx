@@ -93,9 +93,7 @@ const AddEvents = () => {
     setSelectedEvent(null);
   };
 
-  // const handleAttendeeList = (event) => {
-  //   alert("Attendee list for: " + event.title);
-  // };
+
 
   const handleDelete = (eventId) => {
     eventService
