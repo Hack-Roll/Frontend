@@ -1,0 +1,9 @@
+.section-title {
+  font-family: "Tomorrow", sans-serif;
+  font-size: 1.9rem;
+  font-weight: 600; 
+  margin: 24px 0 16px 0;
+  color: rgba(255, 255, 255, 0.87);
+  text-align: center;
+  letter-spacing: 0.5px;
+}

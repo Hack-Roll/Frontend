@@ -1,14 +1,107 @@
+
 :root {
- 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --base-color: rgba(255, 255, 255, 0.87); 
+  --background-primary: #040657; 
+  
+  --font-family-title: "Tomorrow", sans-serif; 
+  --font-family-text: "Noto Sans", sans-serif; 
+  --font-weight-title: 600; 
+  --font-weight-text: 400;  
+
+  --font-size-small: 0.875rem;
+  --font-size-medium: 0,70rem;
+  --font-size-large: 1.25rem;
+
+  --padding-small: 8px; 
+  --padding-medium: 16px; 
+  --padding-large: 32px; 
+
+  --max-width-form: 600px; 
+  --min-height-textarea: 100px; 
+  --border-radius: 8px; 
 }
 
-*{
+
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  font-family: var(--font-family-text); 
+  font-weight: var(--font-weight-text);
+  color: var(--base-color);
+  background-color: var(--background-primary);
 }
 
+
+h1, h2, .section-title {
+  font-family: var(--font-family-title);
+  font-weight: var(--font-weight-title);
+  letter-spacing: 0.5px;
+  color: var(--base-color);
+}
+
+
+p, label, input, select, textarea {
+  font-family: var(--font-family-text);
+  font-weight: var(--font-weight-text);
+}
+
+
+.button {
+  font-family: var(--font-family-title);
+  font-weight: var(--font-weight-title);
+  letter-spacing: 0.5px;
+ 
+}
+
+
+.container {
+  min-height: 100vh;
+  padding: var(--padding-large);
+}
+
+
+.form-container {
+  max-width: var(--max-width-form);
+  margin: var(--padding-medium) auto;
+  border: 2px solid var(--base-color);
+  border-radius: var(--border-radius);
+  padding: var(--padding-medium);
+}
+
+
+.form-container h2 {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--padding-medium);
+  text-align: center;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-small);
+}
+
+
+.form input,
+.form textarea,
+.form select {
+  padding: var(--padding-small);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  font-size: var(--font-size-small);
+}
+
+
+.form label {
+  font-size: var(--font-size-small);
+  margin-bottom: calc(var(--padding-small) / 2);
+}
+
+
+.form textarea {
+  min-height: var(--min-height-textarea);
+  resize: vert
