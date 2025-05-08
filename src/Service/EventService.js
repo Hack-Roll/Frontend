@@ -37,10 +37,17 @@ export class EventService {
   }
 
   updateEvent(eventId, eventData) {
-    // PUT http://localhost:8080/api/user/event/{id}
     const url = `${this.baseUrl}/user/event/${eventId}`;
     return axios
       .put(url, eventData, this.getRequestOptions())
       .then((response) => response.data);
   }
+
+  deleteEvent(eventId) {
+    const url = `${this.baseUrl}/user/event/${eventId}`;
+    return axios.delete(url, this.getRequestOptions())
+      .then((response) => response.data);
+  }
+
+  
 }

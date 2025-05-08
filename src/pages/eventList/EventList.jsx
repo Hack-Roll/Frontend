@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import CardEvent from "../../components/cardEvent/CardEvent";
 import SectionName from "../../components/sectionName/SectionName";
+import EventDetails from "../../components/eventDetails/EventDetails";
 import "./EventList.css";
 import { EventService } from "../../Service/EventService";
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null); // Estado para el evento seleccionado
   const eventService = new EventService();
 
   useEffect(() => {
@@ -14,6 +16,14 @@ const EventList = () => {
       setEvents(res.content || []);
     });
   }, []);
+
+  const handleViewDetails = (event) => {
+    setSelectedEvent(event); // Establece el evento seleccionado
+  };
+
+  const closeDetails = () => {
+    setSelectedEvent(null); // Cierra el componente EventDetails
+  };
 
   return (
     <div>
@@ -26,6 +36,7 @@ const EventList = () => {
           ) : (
             events.map((event, idx) => (
               <CardEvent
+                key={idx}
                 title={event.title}
                 description={event.description}
                 date={event.date}
@@ -43,6 +54,9 @@ const EventList = () => {
           )}
         </div>
       </div>
+      {selectedEvent && (
+        <EventDetails event={selectedEvent} onClose={closeDetails} />
+      )}
     </div>
   );
 };
